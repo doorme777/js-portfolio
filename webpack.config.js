@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dontenv = require('dotenv-webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { type } = require('os');
 
 module.exports = {
@@ -13,6 +14,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext][query]',
   },
+  mode: 'production', // 'development
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -75,6 +77,7 @@ module.exports = {
       ],
     }),
     new Dontenv(),
+    new CleanWebpackPlugin(),
   ],
   optimization: {
     minimize: true,
