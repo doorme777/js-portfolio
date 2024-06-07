@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const Dontenv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WebpackDevServer = require('webpack-dev-server');
 const { type } = require('os');
 
 module.exports = {
@@ -82,5 +83,11 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new MiniCssExtractPlugin(), new TerserPlugin()],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    historyApiFallback: true,
+    port: 3006,
   },
 };
